@@ -2,7 +2,7 @@
 
 Docker container of SANS Investigative Forensic Toolkit (SIFT) Workstation Version (latest) 
 
-Image is based on the [ubuntu](https://registry.hub.docker.com/u/ubuntu/) base image
+Image is based on the [ubuntu](https://registry.hub.docker.com/u/ubuntu/) 16.04 base image
 
 
 ## Docker image usage
