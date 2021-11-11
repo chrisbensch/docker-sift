@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV SUDO_USER root
 
 RUN apt update && apt -y upgrade \ 
-  && apt -y --no-install-recommends install wget bash gnupg2 sudo \ 
+  && apt -y install wget bash gnupg2 sudo \ 
   && wget --quiet https://github.com/teamdfir/sift-cli/releases/download/v1.13.1/sift-cli-linux \
   && mv sift-cli-linux /usr/local/bin/sift \ 
   && chmod 755 /usr/local/bin/sift \ 
