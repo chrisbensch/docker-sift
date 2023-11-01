@@ -7,10 +7,11 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update && apt -y upgrade \ 
   && apt -y install wget bash gnupg2 sudo \ 
-  && wget https://github.com/ekristen/cast/releases/download/v0.14.0/cast_v0.14.0_linux_amd64.deb \
-  && dpkg -i cast_v0.14.0_linux_amd64.deb \
-  #&& cast install teamdfir/sift-saltstack \
-  && adduser --quiet --disabled-password --shell /bin/bash --home /home/sift --gecos "SIFT Analyst" sift \ 
+  && wget -O cast.deb https://github.com/ekristen/cast/releases/download/v0.14.0/cast_v0.14.0_linux_amd64.deb \
+  && dpkg -i cast.deb \
+  && rm cast.deb \
+  && adduser --quiet --shell /bin/bash --home /home/sift --gecos "SIFT Analyst" sift \ 
+  && usermod -aG sudo sift \
   && echo "sift:password" | chpasswd && \
   apt -y autoremove && \
   apt -y autoclean && \
@@ -19,6 +20,7 @@ RUN apt update && apt -y upgrade \
 RUN cast install --mode=server --user=sift teamdfir/sift-saltstack
 
 VOLUME ["/data"]
+USER sift
 WORKDIR /data
 
 ENTRYPOINT ["/bin/bash"]
